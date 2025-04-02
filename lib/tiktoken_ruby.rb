@@ -73,11 +73,15 @@ module Tiktoken
     # https://github.com/Congyuwang/tiktoken-rs/blob/main/tiktoken-rs/src/tokenizer.rs#L50
     # is the source of the mapping for the Rust library
     MODEL_TO_ENCODING_NAME = {
+      # reasoning
+      o1: "o200k_base",
+      o3: "o200k_base",
       # chat
       "chatgpt-4o-latest": "o200k_base",
       "gpt-4o": "o200k_base",
       "gpt-4": "cl100k_base",
       "gpt-3.5-turbo": "cl100k_base",
+      "gpt-3.5": "cl100k_base",  # Common shorthand
       "gpt-35-turbo": "cl100k_base",  # Azure deployment name
       # base
       "davinci-002": "cl100k_base",
@@ -120,16 +124,21 @@ module Tiktoken
       "code-search-babbage-code-001": "r50k_base",
       "code-search-ada-code-001": "r50k_base",
       # open source
-      gpt2: "gpt2"
+      gpt2: "gpt2",
+      "gpt-2": "gpt2"  # Maintains consistency with gpt-4
     }
 
     MODEL_PREFIX_TO_ENCODING = {
+      "o1-": "o200k_base",
+      "o3-": "o200k_base",
       # chat
-      "gpt-4o-": "o200k_base",  # e.g., gpt-4o-2024-05-13, etc.
+      "chatgpt-4o-": "o200k_base",
+      "gpt-4o-": "o200k_base",  # e.g., gpt-4o-2024-05-13
       "gpt-4-": "cl100k_base",  # e.g., gpt-4-0314, etc., plus gpt-4-32k
       "gpt-3.5-turbo-": "cl100k_base",  # e.g, gpt-3.5-turbo-0301, -0401, etc.
       "gpt-35-turbo-": "cl100k_base",  # Azure deployment name
       # fine-tuned
+      "ft:gpt-4o": "o200k_base",
       "ft:gpt-4": "cl100k_base",
       "ft:gpt-3.5-turbo": "cl100k_base",
       "ft:davinci-002": "cl100k_base",
